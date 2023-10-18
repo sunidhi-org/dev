@@ -2,13 +2,11 @@
 
 def isPalindrome(s):
 	return s == s[::-1]
-
-
 # Driver code
 s = "malayalam"
 ans = isPalindrome(s)
 
-if ans:
+if ans
 	print("Yes")
-else:
+else
 	print("No")
