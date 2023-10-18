@@ -1,10 +1,14 @@
-# This program adds two numbers
+# function which return reverse of a string
 
-num1 = 1.5
-num2 = 6.3
+def isPalindrome(s):
+	return s == s[::-1]
 
-# Add two numbers
-sum = num1 + num2
 
-# Display the sum
-print('The sum of {0} and {1} is {2}'.format(num1, num2, sum))
+# Driver code
+s = "malayalam"
+ans = isPalindrome(s)
+
+if ans:
+	print("Yes")
+else:
+	print("No")
