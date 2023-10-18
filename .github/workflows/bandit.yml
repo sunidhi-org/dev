@@ -1,4 +1,4 @@
-name: Run Bandit Scan
+name: Bandit Scan and Push to Test
 
 on:
   push:
@@ -6,11 +6,11 @@ on:
       - main
 
 jobs:
-  bandit:
+  bandit_scan:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: Set up Python
@@ -25,3 +25,8 @@ jobs:
 
       - name: Run Bandit Scan
         run: bandit -r .
+
+      - name: Push to Test Repo
+        run: |
+          git remote add test-repo https://github.com/Khaanvani-Org/test.git
+          git push test-repo main
