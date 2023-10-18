@@ -1,4 +1,4 @@
-name: Bandit Scan and Push to Test
+name: CI/CD Pipeline
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  bandit_scan:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,15 +18,21 @@ jobs:
         with:
           python-version: 3.12.0  # Replace with your Python version
 
-      - name: Install Bandit
+      # Run Bandit Scan
+      - name: Run Bandit Scan
         run: |
           python -m pip install --upgrade pip
           pip install bandit
-
-      - name: Run Bandit Scan
-        run: bandit -r .
-
+          bandit -r .
+          
+      # Push to Test Repo
       - name: Push to Test Repo
         run: |
           git remote add test-repo https://github.com/Khaanvani-Org/test.git
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Automated commit: Bandit scan results"
           git push test-repo main
+        env:
+          GH_TOKEN: ${{ secrets.ALLPERMS }}
