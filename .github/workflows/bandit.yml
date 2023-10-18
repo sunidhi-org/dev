@@ -1,38 +1,35 @@
-name: CI/CD Pipeline
+name: Automated Bandit Tests
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - 'try.py'
 
 jobs:
-  build:
+  bandit:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.12.0  # Replace with your Python version
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.12.0
 
-      # Run Bandit Scan
-      - name: Run Bandit Scan
-        run: |
-          python -m pip install --upgrade pip
-          pip install bandit
-          bandit -r .
-          
-      # Push to Test Repo
-      - name: Push to Test Repo
-        run: |
-          git remote add test-repo https://github.com/Khaanvani-Org/test.git
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Automated commit: Bandit scan results"
-          git push test-repo main
-        env:
-          GH_TOKEN: ${{ secrets.ALLPERMS }}
+    - name: Install Bandit
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit
+
+    - name: Run Bandit tests
+      run: bandit -r .
+
+    - name: Commit and push changes if tests pass
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add .
+        git diff --quiet && git diff --staged --quiet || git commit -m "Automated commit: Bandit scan passed"
+        git push origin main
