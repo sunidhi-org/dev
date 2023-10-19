@@ -1,0 +1,27 @@
+name: Fork Sync and Deploy
+
+on:
+  workflow_run:
+    workflows: ["super-linter", "bandit", "sel", "wapiti"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  sync_with_upstream:
+    runs-on: ubuntu-latest
+    name: Sync main with upstream latest
+
+    steps:
+    # Step 1: run a standard checkout action, provided by github
+    - name: Sync and merge upstream repository with your current repository
+      uses: dabreadman/sync-upstream-repo@v1.0.0.b
+      with:
+        # URL of gitHub public upstream repo
+        upstream_repo: "https://github.com/Khaanvani-Org/dev.git"
+        # Branch to merge from upstream (defaults to downstream branch)
+        upstream_branch: main
+        # Branch to merge into downstream
+        downstream_branch: main
+        # GitHub Bot token
+        token: ${{ secrets.GITHUB_TOKEN }}
