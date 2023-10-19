@@ -30,6 +30,18 @@ Terraform for iac tool
 Visit our site at [khaanvaani.streamlit.app](https://khaanvaani.streamlit.app/)
 
 
+Our flowchart:
+```mermaid
+flowchart LR;
+
+A[User] -->|Changes| B(Dev)
+B --> C{Bandit&Super-Linter Test Passed?}
+C -->|Success| D(Test)
+D -->E{Bandit,Super-Linter,Selnium,Wapiti Test Passed?} 
+E -->|Success| F(Prod)
+
+```
+
 ## Future
 
 Regional languages
