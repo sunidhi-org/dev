@@ -27,8 +27,8 @@ Selenium for testing
 
 Terraform for iac tool
 ## Demo
+Visit our website at [khaanvaani.streamlit.app](https://khaanvaani.streamlit.app/)
 
-Click https://khaanvaani.streamlit.app/
 
 
 ## Future
