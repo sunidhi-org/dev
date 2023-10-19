@@ -30,7 +30,8 @@ Terraform for iac tool
 Visit our site at [khaanvaani.streamlit.app](https://khaanvaani.streamlit.app/)
 
 
-Our flowchart:
+
+##Our flowchart:
 ```mermaid
 flowchart LR;
 
@@ -41,6 +42,7 @@ D -->E{Bandit,Super-Linter,Selnium,Wapiti Test Passed?}
 E -->|Success| F(Prod)
 
 ```
+
 
 ## Future
 
