@@ -1,5 +1,5 @@
 
-# Khaanvani Project
+# Khaanvani Project test
 
 This repository hosts a Chatbot project that serves as an intelligent virtual assistant capable of responding to text queries related to various Acts, Rules, and Regulations applicable to the Mining industry. It's designed to make the information retrieval process more efficient and user-friendly for people in the mining sector.
 ## Features
