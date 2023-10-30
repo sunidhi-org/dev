@@ -21,3 +21,4 @@ decnumber= binaryToDecimal(oncecomp)
 decnumber += 1
 print("2's Compliment of the given binary number is: ", end='' )
 decimalToBinary(decnumber)
+#Updating 
