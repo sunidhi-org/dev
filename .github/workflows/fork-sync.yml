@@ -1,4 +1,4 @@
-name: Sync Dev to Test
+name: Syncing Forks
 
 on:
   schedule:
