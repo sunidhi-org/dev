@@ -1,9 +1,9 @@
-name: Sync Fork
+name: Sync Dev to Test
 
 on:
   schedule:
-    - cron: "0 13 * * 1"
-  workflow_dispatch: # on button click
+    - cron: '*/5 * * * *' # every 5 minutes
+  workflow_dispatch: # manually triggered workflow
 
 permissions:
   contents: write
@@ -12,10 +12,11 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Sync and merge upstream repository with your current repository
+      - name: Sync and merge upstream repository with the test repository
         uses: dabreadman/sync-upstream-repo@v1.3.0
         with:
           upstream_repo: https://github.com/Khaanvani-Org/dev.git
           upstream_branch: main
+          downstream_repo: https://github.com/Khaanvani-Org/test.git
           downstream_branch: main
           token: ${{ secrets.GITHUB_TOKEN }}
