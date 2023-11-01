@@ -1,10 +1,10 @@
 name: Super Linter
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["bandit"]
+    types:
+      - completed
 
 jobs:
   run-super-linter:
