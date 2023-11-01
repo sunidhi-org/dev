@@ -21,7 +21,7 @@ This repository hosts a Chatbot project that serves as an intelligent virtual as
 
 -Bandit for source code checking
 
--wapiti for dynamic
+-Wapiti for dynamic checking
 
 -Selenium for testing
 
