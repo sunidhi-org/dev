@@ -11,21 +11,22 @@ This repository hosts a Chatbot project that serves as an intelligent virtual as
 
 ## Tech Stack
 
-Python
+-Python
 
-Natural Language Processing (NLP)
+-Natural Language Processing (NLP)
 
-Pinecone
+-Pinecone
 
-Tools:
+## Tools:
 
-Bandit for source code checking
+-Bandit for source code checking
 
-wapiti for dynamic
+-wapiti for dynamic
 
-Selenium for testing
+-Selenium for testing
 
-Terraform for iac tool
+-Terraform for iac tool
+
 ## Demo
 Visit our site at [khaanvaani.streamlit.app](https://khaanvaani.streamlit.app/)
 
