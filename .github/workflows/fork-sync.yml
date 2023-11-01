@@ -1,11 +1,10 @@
 name: Sync Fork
 
 on:
-  workflow_run:
-    workflows: ["Lint Check"]
-    types:
-      - completed
-      
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
 permissions:
   contents: write
 
