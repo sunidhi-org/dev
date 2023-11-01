@@ -22,4 +22,4 @@ jobs:
           upstream_branch: main
           downstream_repo: https://github.com/Khaanvani-Org/test.git
           downstream_branch: main
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ALLPERMS }}
