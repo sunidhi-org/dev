@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '*/5 * * * *' # every 5 minutes
   workflow_run:
-    workflows: ["bandit", "lintr"]
+    workflows: ["bandit", "wapiti"]
     types:
       - completed
 
