@@ -20,7 +20,7 @@ This repository hosts a Chatbot project that serves as an intelligent virtual as
 ## Tools:
 [![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 
--Bandit for source code checking
+-Bandit for code vulnerability checking
 
 -Wapiti for dynamic checking
 
