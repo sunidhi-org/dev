@@ -23,4 +23,6 @@ jobs:
       run: docker build -t pd-chatbot:v0 . --file Dockerfile
       
     - name: Push Docker Image
-      run: docker push pd-chatbot:v0
+      run: |
+        docker tag pd-chatbot:v0 vidushimodi/pd-chatbot:v0
+        docker push vidushimodi/pd-chatbot:v0
