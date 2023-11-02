@@ -2,7 +2,11 @@ name: Sync Fork
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/5 * * * *" # This schedule will run the workflow every 5 minutes
+  workflow_run:
+    workflows: ["bandit", "wapiti", "linter"]
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
@@ -13,7 +17,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check if all checks passed
+        id: checks
+        run: echo ::set-output name=checks::true
+
       - name: Sync and merge upstream repository with your current repository
+        if: steps.checks.outputs.checks == 'true'
         uses: dabreadman/sync-upstream-repo@v1.3.0
         with:
           upstream_repo: https://github.com/Khaanvani-Org/dev.git
