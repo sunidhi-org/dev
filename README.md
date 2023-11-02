@@ -18,6 +18,7 @@ This repository hosts a Chatbot project that serves as an intelligent virtual as
 -Pinecone
 
 ## Tools:
+[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 
 -Bandit for source code checking
 
