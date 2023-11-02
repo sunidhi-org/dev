@@ -21,6 +21,6 @@ jobs:
 
     - name: Build Docker Image
       run: docker build -t pd-chatbot:v0 .
-      working-directory: Dockerfile
+      working-directory: ./Dockerfile
     - name: Push Docker Image
       run: docker push pd-chatbot:v0
