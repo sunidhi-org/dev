@@ -6,7 +6,7 @@ import streamlit as st
 openai.api_key = "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"
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-pinecone.init(api_key='de3defb8-3e52-4ccf-82b1-9d785b981ec5', environment='gcp-starter')
+pinecone.init(api_key='ai_key', environment='gcp-starter')
 index = pinecone.Index('langchain-chatbot')
 
 def find_match(input):
