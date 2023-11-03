@@ -39,5 +39,6 @@ jobs:
         with:
           upstream_repo: https://github.com/Khaanvani-Org/dev.git
           upstream_branch: main
+          downstream_repo: https://github.com/Khaanvani-Org/test.git
           downstream_branch: main
           token: ${{ secrets.GITHUB_TOKEN }}
