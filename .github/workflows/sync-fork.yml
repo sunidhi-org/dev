@@ -47,7 +47,7 @@ jobs:
           # Add any other necessary dependencies with "pip install" as well
 
       - name: Run Selenium Tests
-        run: python test.py
+        run: python try.py
 
   sync_fork:
     runs-on: ubuntu-latest
