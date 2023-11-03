@@ -15,7 +15,7 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.COPYREPO_KHAANVANI2 }}
       with:
         source_file: 'try.py'
-        destination_repo: 'https://github.com/Khaanvani-Org/test/tree/main'
+        destination_repo: 'https://github.com/Khaanvani-Org/test.git'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
         commit_message: 'A jj message for the commit'
