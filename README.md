@@ -35,13 +35,21 @@ Visit our site at [khaanvaani.streamlit.app](https://khaanvaani.streamlit.app/)
 
 ## Our flowchart:
 ```mermaid
-flowchart LR;
-
-A[User] -->|Changes| B(Dev)
-B --> C{Bandit&Super-Linter Test Passed?}
-C -->|Success| D(Test)
-D -->E{Bandit,Super-Linter,Selnium,Wapiti Test Passed?} 
-E -->|Success| F(Prod)
+    gitGraph
+       commit id: "."
+       branch B1
+       checkout B1
+       commit id: "Commit Changes"
+       checkout main
+       checkout B1
+       checkout main
+       checkout B1
+       commit id:"Bandit Passed"
+       commit id:"Wapiti Passed"
+       checkout main
+       merge B1 id: "Merge " tag: "Changes Committed" type: REVERSE
+       commit id: "Push to Test"
+       checkout main
 
 ```
 
