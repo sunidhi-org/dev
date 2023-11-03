@@ -1,6 +1,9 @@
 name: Push File
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   copy-file:
@@ -12,12 +15,10 @@ jobs:
     - name: Pushes test file
       uses: dmnemec/copy_file_to_another_repo_action@main
       env:
-        API_TOKEN_GITHUB: ${{ secrets.COPYREPO_KHAANVANI2 }}
+        API_TOKEN: ${{ secrets.COPYREPO_KHAANVANI2 }} # Use the correct environment variable name
       with:
         source_file: 'try.py'
         destination_repo: 'Khaanvani-Org/test'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
         commit_message: 'A jj message for the commit'
-                    
-            
