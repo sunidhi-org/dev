@@ -15,7 +15,7 @@ jobs:
     - name: Push a file to another repository
       uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
       env:
-        API_TOKEN: ${{ secrets.ALLPERMS }} # Use the correct environment variable name
+       API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }} # Use the correct environment variable name
       with:
         source_file: 'try.py'
         destination_repo: 'Khaanvani-Org/test'
