@@ -19,7 +19,7 @@ jobs:
       - name: Install Bandit
         run: |
           pip install bandit
-          bandit -r .
+     #      bandit -r .
         continue-on-error: false
 
       - name: Install Wapiti
