@@ -40,7 +40,7 @@ jobs:
 
       - name: Sync changes to test repo
         run: |
-          git remote add test-repo https://github.com/YourUsername/test.git
+          git remote add test-repo https://github.com/Khaanvani-Org/test.git
           git push test-repo main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
