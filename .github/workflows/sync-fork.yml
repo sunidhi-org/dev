@@ -1,4 +1,4 @@
-name: Security Scans and Sync
+name: Security Scans and Flow Sync
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
         run: |
           pip install bandit
           bandit -r .
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Install Wapiti
         run: |
