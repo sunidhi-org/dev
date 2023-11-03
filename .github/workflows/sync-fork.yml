@@ -33,6 +33,9 @@ jobs:
 
   sync_fork:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
     needs: [bandit_scan, wapiti_scan]
     steps:
       - name: Checkout code
