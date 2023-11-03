@@ -1,0 +1,23 @@
+name: Push File
+
+on: push
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Pushes test file
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.COPYREPO_KHAANVANI2 }}
+      with:
+        source_file: 'try.py'
+        destination_repo: 'https://github.com/Khaanvani-Org/test/tree/main'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'
+        commit_message: 'A jj message for the commit'
+                    
+            
