@@ -1,0 +1,44 @@
+name: Security Scans and Sync
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  bandit_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Bandit
+        run: |
+          pip install bandit
+          bandit -r .
+
+  wapiti_scan:
+    runs-on: ubuntu-latest
+    needs: bandit_scan
+
+    steps:
+      - name: Install Wapiti
+        run: |
+          sudo apt-get -y install wapiti
+          wapiti -u https://khaanvaani.streamlit.app/
+
+
+  sync_fork:
+    runs-on: ubuntu-latest
+    needs: [bandit_scan, wapiti_scan]
+
+    steps:
+      - name: Sync Fork
+        uses: dabreadman/sync-upstream-repo@v1.3.0
+        with:
+          upstream_repo: https://github.com/Khaanvani-Org/dev.git
+          upstream_branch: main
+          downstream_repo: https://github.com/Khaanvani-Org/test.git
+          downstream_branch: main
+          token: ${{ secrets.GITHUB_TOKEN }}
