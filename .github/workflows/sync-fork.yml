@@ -8,7 +8,6 @@ on:
 jobs:
   bandit_scan:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -21,24 +20,39 @@ jobs:
   wapiti_scan:
     runs-on: ubuntu-latest
     needs: bandit_scan
-
     steps:
       - name: Install Wapiti
         run: |
           sudo apt-get -y install wapiti
           wapiti -u https://khaanvaani.streamlit.app/
 
-
   sync_fork:
     runs-on: ubuntu-latest
     needs: [bandit_scan, wapiti_scan]
-
     steps:
-      - name: Sync Fork
-        uses: dabreadman/sync-upstream-repo@v1.3.0
-        with:
-          upstream_repo: https://github.com/Khaanvani-Org/dev.git
-          upstream_branch: main
-          downstream_repo: https://github.com/Khaanvani-Org/test.git
-          downstream_branch: main
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Sync changes with test repository
+        run: |
+          # Configure git remotes for dev and test repositories
+          git remote add dev_repo https://github.com/Khaanvani-Org/dev.git
+          git remote add test_repo https://github.com/Khaanvani-Org/test.git
+
+          # Fetch changes from dev repository
+          git fetch dev_repo main
+
+          # Merge changes into the test repository (assuming no conflicts)
+          git checkout main
+          git merge dev_repo/main --no-commit --no-ff
+
+          # Handle any conflicts here if necessary
+
+          # Commit the changes
+          git commit -m "Sync changes from dev repository"
+
+          # Push changes to the test repository
+          git push test_repo main
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
