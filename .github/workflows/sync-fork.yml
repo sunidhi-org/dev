@@ -3,6 +3,10 @@ name: Security Scans and Sync
 on:
   push:
     branches: [main]
+  workflow_run:
+    workflows: ["Bandit", "Wapiti"]
+    types:
+      - completed
 
 jobs:
   security_and_sync:
@@ -19,19 +23,20 @@ jobs:
         continue-on-error: true
 
       - name: Install Wapiti
-        if: always()
-        needs: bandit
         run: |
           sudo apt-get -y install wapiti
           wapiti -u https://khaanvaani.streamlit.app/
         continue-on-error: true
 
+      - name: Check Bandit and Wapiti Results
+        run: echo "CHECKS=true" >> $GITHUB_ENV
+        if: ${{ success() }}
+
       - name: Sync Fork
-        if: always()
-        needs: wapiti
         uses: dabreadman/sync-upstream-repo@v1.3.0
         with:
           upstream_repo: https://github.com/Khaanvani-Org/dev.git
           upstream_branch: main
           downstream_branch: main
           token: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ success() }}
