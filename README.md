@@ -33,7 +33,7 @@ Visit our site at [khaanvaani.streamlit.app](https://khaanvaani.streamlit.app/)
 
 
 
-## Our flowchart:
+## Our flowchart: Dev Repo
 ```mermaid
     gitGraph
        commit id: "."
@@ -53,7 +53,25 @@ Visit our site at [khaanvaani.streamlit.app](https://khaanvaani.streamlit.app/)
 
 ```
 
-
+## Our flowchart: Test Repo
+```mermaid
+    gitGraph
+       commit id: "."
+       branch B2
+       checkout B2
+       commit id: "Commit Changes"
+       checkout main
+       checkout B2
+       checkout main
+       checkout B2
+       commit id:"Selenium Tests Passed"
+       commit id:"Code Coverage Tests Passed"
+       checkout main
+       merge B2 id: "Merge " tag: "Changes Committed" type: REVERSE
+       commit id: "Push to Prod"
+       checkout main
+    
+```
 ## Future
 
 Regional languages
