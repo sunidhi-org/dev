@@ -36,6 +36,7 @@ jobs:
     permissions:
       contents: write
       packages: write
+      pages: write 
     needs: [bandit_scan, wapiti_scan]
     steps:
       - name: Checkout code
