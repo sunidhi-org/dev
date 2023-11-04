@@ -6,8 +6,33 @@ on:
       - main
 
 jobs:
+  bandit_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Git identity
+        run: |
+          git config --global user.email "eng21ct0039@dsu.edu.in"
+          git config --global user.name "Sukriti"
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Bandit
+        run: |
+          pip install bandit
+          bandit -r .
+
+  wapiti_scan:
+    runs-on: ubuntu-latest
+    needs: bandit_scan
+    steps:
+      - name: Install Wapiti
+        run: |
+          sudo apt-get -y install wapiti
+          wapiti -u https://khaanvaani.streamlit.app/
   copy-file:
     runs-on: ubuntu-latest
+    needs: [bandit_scan, wapiti_scan]
     permissions:
       contents: write
       packages: write
