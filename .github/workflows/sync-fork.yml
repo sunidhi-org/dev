@@ -1,9 +1,9 @@
 name: Security Scans and Sync
 
-on:
-  push:
+#on:
+  #push:
     branches:
-      - main
+   #   - main
 
 jobs:
   bandit_scan:
