@@ -47,4 +47,4 @@ jobs:
           git remote add test-repo https://github.com/Khaanvani-Org/test.git
           git push test-repo main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
