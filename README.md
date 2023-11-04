@@ -18,10 +18,11 @@ This repository hosts a Chatbot project that serves as an intelligent virtual as
 -Pinecone
 
 ## Tools:
-[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
-[![dynamic security: wapiti](https://img.shields.io/badge/dynamic_security-wapiti-red.svg)
-![testing: selenium](https://img.shields.io/badge/:Testing-selenium-blue.svg)
-![dynamic testing: Code_Coverage](https://img.shields.io/badge/:Dynamic_Testing-Code_Coverage-green.svg)
+[![Security: Bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+[![Dynamic Security: Wapiti](https://img.shields.io/badge/dynamic_security-wapiti-red.svg)
+[![Testing: Selenium](https://img.shields.io/badge/:Testing-selenium-blue.svg)
+[![Dynamic Testing: Code_Coverage](https://img.shields.io/badge/:Dynamic_Testing-Code_Coverage-green.svg)
+[![IAC: Terraform](https://img.shields.io/badge/:IAC-Terraform-purple.svg)
 
 -Bandit for code vulnerability checking
 
