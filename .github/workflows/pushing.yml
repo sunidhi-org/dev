@@ -59,7 +59,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Push a file to another repository
+    - name: Push try to another repository
       uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
       env:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
@@ -68,4 +68,13 @@ jobs:
         destination_repo: 'Khaanvani-Org/test'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
-        commit_message: 'hopefully 49 commited'
+    - name: Push readme to another repository
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'README.md'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'
+    
