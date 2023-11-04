@@ -19,7 +19,7 @@ This repository hosts a Chatbot project that serves as an intelligent virtual as
 
 ## Tools:
 [![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
-[![SAST: seleniium](https://img.shields.io/badge/:SAST-selenium-blue.svg)]
+![SAST: seleniium](https://img.shields.io/badge/:SAST-selenium-blue.svg)
 
 https://img.shields.io/badge/SAST-Selenium-blue
 
