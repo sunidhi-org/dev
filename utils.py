@@ -2,11 +2,16 @@ from sentence_transformers import SentenceTransformer
 import pinecone
 import openai
 import streamlit as st
+from dotenv import load_dotenv
+import os
+
+def configure():
+    load_dotenv()
 # deepcode ignore NoHardcodedCredentials: <please specify a reason of ignoring this>
-openai.api_key = "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"
+
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-pinecone.init(api_key='ai_key', environment='gcp-starter')
+pinecone.init(api_key=os.getenv('OPENAI_API_KEY'), environment='gcp-starter')
 index = pinecone.Index('langchain-chatbot')
 
 def find_match(input):

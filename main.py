@@ -10,6 +10,11 @@ from langchain.prompts import (
 import streamlit as st
 from streamlit_chat import message
 from utils import *
+from dotenv import load_dotenv
+import os
+
+def configure():
+    load_dotenv()
 
 st.subheader("KhaanVaani")
 
@@ -19,7 +24,7 @@ if 'responses' not in st.session_state:
 if 'requests' not in st.session_state:
     st.session_state['requests'] = []
 
-llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key="ai_key")
+llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=os.getenv('OPENAI_API_KEY'))
 
 if 'buffer_memory' not in st.session_state:
             st.session_state.buffer_memory=ConversationBufferWindowMemory(k=3,return_messages=True)
