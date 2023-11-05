@@ -1,0 +1,133 @@
+name: Push File
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  bandit_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Git identity
+        run: |
+          git config --global user.email "eng21ct0039@dsu.edu.in"
+          git config --global user.name "Sukriti"
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Bandit
+        run: |
+          pip install bandit
+          bandit -r .
+
+  wapiti_scan:
+    runs-on: ubuntu-latest
+    needs: bandit_scan
+    steps:
+      - name: Install Wapiti
+        run: |
+          sudo apt-get -y install wapiti
+          wapiti -u https://khaanvaani.streamlit.app/
+          
+  copy-file:
+    runs-on: ubuntu-latest
+    needs: [bandit_scan, wapiti_scan]
+    permissions:
+      contents: write
+      packages: write
+      pages: write 
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: try.py
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'try.py'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'
+        
+    - name: readme.md
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'README.md'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'
+        
+    - name: k8s
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'k8s/'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'
+
+    - name: .env
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: '.env'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'
+
+    - name: Dockerfile
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'Dockerfile'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'
+
+    - name: Langchain_Pinecone_Indexing_.ipynb
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'Langchain_Pinecone_Indexing_.ipynb'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'
+
+    - name: main.py
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'main.py'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'    
+
+    - name: requirements.txt
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'requirements.txt'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'   
+
+    - name: utils.py
+      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+      env:
+       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
+      with:
+        source_file: 'utils.py'
+        destination_repo: 'Khaanvani-Org/test'
+        user_email: 'eng21ct0039@dsu.edu.in'
+        user_name: 's-sukriti'  

@@ -1,5 +1,11 @@
 
-# Khaanvani Project Test 2
+# Khaanvani Project Test 
+------------------------------------------------------------------------------
+[![Security: Bandit](https://img.shields.io/badge/Security-Bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+![Dynamic Security: Wapiti](https://img.shields.io/badge/Dynamic_Security-Wapiti-red.svg)
+![Testing: Pytest](https://img.shields.io/badge/:Testing-Pytest-blue.svg)
+![Dynamic Testing: Code_Coverage](https://img.shields.io/badge/:Dynamic_Testing-Code_Coverage-green.svg)
+![IAC: Terraform](https://img.shields.io/badge/:IAC-Terraform-purple.svg)
 
 This repository hosts a Chatbot project that serves as an intelligent virtual assistant capable of responding to text queries related to various Acts, Rules, and Regulations applicable to the Mining industry. It's designed to make the information retrieval process more efficient and user-friendly for people in the mining sector.
 ## Features
@@ -18,13 +24,12 @@ This repository hosts a Chatbot project that serves as an intelligent virtual as
 -Pinecone
 
 ## Tools:
-[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 
 -Bandit for code vulnerability checking
 
 -Wapiti for dynamic checking
 
--Selenium for testing
+-Pytest for testing
 
 -Terraform for iac tool
 
