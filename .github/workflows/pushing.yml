@@ -61,26 +61,6 @@ jobs:
         destination_repo: 'Khaanvani-Org/test'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
-        
-    - name: k8s
-      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
-      with:
-        source_file: 'k8s/'
-        destination_repo: 'Khaanvani-Org/test'
-        user_email: 'eng21ct0039@dsu.edu.in'
-        user_name: 's-sukriti'
-
-    - name: .env
-      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
-      with:
-        source_file: '.env'
-        destination_repo: 'Khaanvani-Org/test'
-        user_email: 'eng21ct0039@dsu.edu.in'
-        user_name: 's-sukriti'
 
     - name: Dockerfile
       uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
@@ -92,25 +72,15 @@ jobs:
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
 
-    - name: Langchain_Pinecone_Indexing_.ipynb
+    - name: code folder
       uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
       env:
        API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
       with:
-        source_file: 'Langchain_Pinecone_Indexing_.ipynb'
+        source_file: 'code/'
         destination_repo: 'Khaanvani-Org/test'
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'
-
-    - name: main.py
-      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
-      with:
-        source_file: 'main.py'
-        destination_repo: 'Khaanvani-Org/test'
-        user_email: 'eng21ct0039@dsu.edu.in'
-        user_name: 's-sukriti'    
 
     - name: requirements.txt
       uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
@@ -122,12 +92,3 @@ jobs:
         user_email: 'eng21ct0039@dsu.edu.in'
         user_name: 's-sukriti'   
 
-    - name: utils.py
-      uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }} # Use the correct environment variable name
-      with:
-        source_file: 'utils.py'
-        destination_repo: 'Khaanvani-Org/test'
-        user_email: 'eng21ct0039@dsu.edu.in'
-        user_name: 's-sukriti'  
