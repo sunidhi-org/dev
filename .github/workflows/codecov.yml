@@ -1,9 +1,9 @@
 name: Code Coverage
 
-#on:
-#  push:
+on:
+  push:
     branches:
-  #    - main  # Replace with the branch you want to monitor
+      - main  # Replace with the branch you want to monitor
 
 jobs:
   test:
@@ -22,11 +22,10 @@ jobs:
       run: |
         pip install -r requirements.txt  # Install your project's dependencies
         pip install pytest-cov
-
     - name: Run tests with coverage
       run: |
         pytest --cov=your_module tests/  # Replace "your_module" with the module to be tested
     - name: Upload code coverage to Codecov
       uses: codecov/codecov-action@v2
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+        token: ${{ secrets.CODECOV_TOKEN }}   # Replace with your Codecov token (stored as a secret in your repository)
