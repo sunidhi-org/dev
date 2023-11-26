@@ -24,18 +24,16 @@ jobs:
 
     - name: Install Veracode CLI
       run: |
-        # Install the Veracode CLI
-        wget -O veracode.zip https://downloads.veracode.com/securityscan/cli/veracode-linux-cli-latest.zip
-        unzip -q veracode.zip
+        # Install Veracode CLI
+        curl -O https://downloads.veracode.com/securityscan/VeracodeJavaAPI.jar
         export PATH=$PATH:$(pwd)
-
+        
     - name: Run Veracode Scan
       run: |
         # Perform any pre-scan setup here
-
         # Example: Run Veracode scan command
         veracode scan -options
-
+        
     - name: Upload results to Veracode
       run: |
         # Upload scan results to Veracode
