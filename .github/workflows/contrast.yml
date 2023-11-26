@@ -1,4 +1,4 @@
-name: Invicti Scan
+name: Checkmarx IAST
 
 on:
   push:
@@ -6,27 +6,39 @@ on:
       - main
 
 jobs:
-  invicti-scan:
+  iast-scan:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Invicti CLI
+      - name: Install Checkmarx IAST Agent
         run: |
-          # You may need to install the Invicti CLI or use a pre-installed container
-          # Example: npm install -g invicti-cli
+          curl -s https://download.checkmarx.com/iast/agent/latest/checkmarx-iast-agent_linux_x64.tar.gz | tar xzf -
+          sudo ./checkmarx-iast-agent install
 
-      - name: Run Invicti Scan
+      - name: Configure Checkmarx IAST
         run: |
-          # Replace the placeholders with your Invicti CLI commands
-          invicti scan -t YourTargetURL -u ${{ secrets.INVICTI_USERNAME }} -p ${{ secrets.INVICTI_PASSWORD }}
-          
+          cat << EOF > /opt/checkmarx/iast/agent.conf
+          {
+            "server": {
+              "url": "https://your-checkmarx-iast-server-url",
+              "token": "${{ secrets.CHECKMARX_IAST_API_TOKEN }}"
+            }
+          }
+          EOF
+
+      - name: Start Checkmarx IAST Agent
+        run: |
+          sudo ./checkmarx-iast-agent start
+
+      - name: Run Checkmarx IAST Scan
+        run: |
+          sudo ./checkmarx-iast-agent scan
+
       - name: Upload Scan Results
         uses: actions/upload-artifact@v2
         with:
-          name: invicti-scan-results
-          path: /path/to/invicti-scan-results # Adjust the path based on your Invicti scan output
-
-# Add additional steps or jobs as needed
+          name: checkmarx-iast-scan-results
+          path: /opt/checkmarx/iast/results/latest
