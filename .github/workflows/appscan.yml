@@ -1,6 +1,4 @@
-              - name: HCL AppScan CodeSweep
-                uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v2
-            
+name:  Appscan          
 
 on:
   push:
@@ -23,6 +21,9 @@ jobs:
           appscan-server-url: https://your-appscan-server-url
           appscan-service: default
 
+      - name: HCL AppScan CodeSweep
+        uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v2
+        
       - name: Scan application
         run: |
           appscan scan -t scan -a your-application.zip
