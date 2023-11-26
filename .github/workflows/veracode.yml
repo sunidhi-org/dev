@@ -1,43 +1,33 @@
-name: Veracode Scan
+name: Code Coverage
 
 on:
   push:
     branches:
-      - main
+      - main  # Replace with the branch you want to monitor
 
 jobs:
-  veracode-scan:
+  test:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.10  # Replace with your Python version
 
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt # Install your project's dependencies
+          pip install pytest-cov
 
-    - name: Install Veracode CLI
-      run: |
-        # Install Veracode CLI
-        curl -O https://downloads.veracode.com/securityscan/VeracodeJavaAPI.jar
-        export PATH=$PATH:$(pwd)
-        
-    - name: Run Veracode Scan
-      run: |
-        # Perform any pre-scan setup here
-        # Example: Run Veracode scan command
-        veracode scan -options
-        
-    - name: Upload results to Veracode
-      run: |
-        # Upload scan results to Veracode
-        
-    # Add additional steps as needed
+      - name: Run tests with coverage
+        run: |
+          pytest --cov=your_module tests/  # Replace "your_module" with the module to be tested
 
-# Add workflow configuration for other types of scans, integrations, etc.
+      - name: Upload code coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
