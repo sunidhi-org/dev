@@ -2,32 +2,34 @@ on:
   push:
     branches:
       - main
-      
+
 jobs:
   contrast-scan:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
 
-    - name: Install Contrast Security CLI
-      run: |
-        npm install -g @contrast/cli
+      - name: Install Contrast Security CLI
+        run: |
+          npm install -g @contrast/cli
 
-    - name: Run Contrast Security Scan
-      run: |
-        contrast security scan \
-          --username ${{ secrets.CONTRAST_USERNAME }} \
-          --api-key ${{ secrets.CONTRAST_API_KEY }} \
-          --org-id ${{ secrets.CONTRAST_ORG_ID }} \
-          --app-name YourAppName \
-          --auto-open
+      - name: Download Contrast Security CLI installation script
+        run: |
+          curl -s https://raw.githubusercontent.com/contrast-security/contrast-cli/master/install-cli.sh | bash
 
-    # Add additional steps as needed
+      - name: Run Contrast Security Scan
+        run: |
+          contrast security scan \
+            --username ${{ secrets.CONTRAST_USERNAME }} \
+            --api-key ${{ secrets.CONTRAST_API_KEY }} \
+            --org-id ${{ secrets.CONTRAST_ORG_ID }} \
+            --app-name YourAppName \
+            --auto-open
 
