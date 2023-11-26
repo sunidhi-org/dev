@@ -1,4 +1,6 @@
-name: AppScan Scan
+              - name: HCL AppScan CodeSweep
+                uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v2
+            
 
 on:
   push:
