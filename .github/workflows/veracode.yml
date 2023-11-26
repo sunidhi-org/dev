@@ -1,4 +1,4 @@
-name: Veracode Scan
+name: Contrast Security Scan
 
 on:
   push:
@@ -6,38 +6,30 @@ on:
       - main
 
 jobs:
-  veracode-scan:
+  contrast-scan:
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup Python
-      uses: actions/setup-python@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
       with:
-        python-version: 3.8
+        node-version: 14
 
-    - name: Install dependencies
+    - name: Install Contrast Security CLI
       run: |
-        pip install -r requirements.txt
+        npm install -g @contrast/cli
 
-    - name: Install Veracode CLI
+    - name: Run Contrast Security Scan
       run: |
-        # Install Veracode CLI
-        curl -O https://downloads.veracode.com/securityscan/VeracodeJavaAPI.jar
-        export PATH=$PATH:$(pwd)
-        
-    - name: Run Veracode Scan
-      run: |
-        # Perform any pre-scan setup here
-        # Example: Run Veracode scan command
-        veracode scan -options
-        
-    - name: Upload results to Veracode
-      run: |
-        # Upload scan results to Veracode
-        
+        contrast security scan \
+          --username ${{ secrets.CONTRAST_USERNAME }} \
+          --api-key ${{ secrets.CONTRAST_API_KEY }} \
+          --org-id ${{ secrets.CONTRAST_ORG_ID }} \
+          --app-name YourAppName \
+          --auto-open
+
     # Add additional steps as needed
 
-# Add workflow configuration for other types of scans, integrations, etc.
