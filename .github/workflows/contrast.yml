@@ -1,4 +1,4 @@
-name: Contrast Check
+name: Invicti Scan
 
 on:
   push:
@@ -6,32 +6,27 @@ on:
       - main
 
 jobs:
-  contrast-scan:
+  invicti-scan:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - name: Setup Invicti CLI
+        run: |
+          # You may need to install the Invicti CLI or use a pre-installed container
+          # Example: npm install -g invicti-cli
+
+      - name: Run Invicti Scan
+        run: |
+          # Replace the placeholders with your Invicti CLI commands
+          invicti scan -t YourTargetURL -u ${{ secrets.INVICTI_USERNAME }} -p ${{ secrets.INVICTI_PASSWORD }}
+          
+      - name: Upload Scan Results
+        uses: actions/upload-artifact@v2
         with:
-          node-version: 14
+          name: invicti-scan-results
+          path: /path/to/invicti-scan-results # Adjust the path based on your Invicti scan output
 
-      - name: Install Contrast Security CLI
-        run: |
-          npm install -g @contrast/cli
-
-      - name: Download Contrast Security CLI installation script
-        run: |
-          curl -s https://raw.githubusercontent.com/contrast-security/contrast-cli/master/install-cli.sh | bash
-
-      - name: Run Contrast Security Scan
-        run: |
-          contrast security scan \
-            --username ${{ secrets.CONTRAST_USERNAME }} \
-            --api-key ${{ secrets.CONTRAST_API_KEY }} \
-            --org-id ${{ secrets.CONTRAST_ORG_ID }} \
-            --app-name YourAppName \
-            --auto-open
-
+# Add additional steps or jobs as needed
