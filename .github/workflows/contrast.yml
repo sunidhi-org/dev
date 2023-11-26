@@ -1,6 +1,7 @@
-name: Contrast Security Scan
+- name: Install Contrast Security CLI
+  run: |
+    npm install -g @contrast/cli
 
-on:
   push:
     branches:
       - main
