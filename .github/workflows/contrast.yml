@@ -1,3 +1,5 @@
+name: Contrast Check
+
 on:
   push:
     branches:
