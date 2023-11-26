@@ -1,4 +1,4 @@
-name: Checkmarx IAST
+name: AppScan Scan
 
 on:
   push:
@@ -6,39 +6,27 @@ on:
       - main
 
 jobs:
-  iast-scan:
+  appscan-scan:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Checkmarx IAST Agent
-        run: |
-          curl -s https://download.checkmarx.com/iast/agent/latest/checkmarx-iast-agent_linux_x64.tar.gz | tar xzf -
-          sudo ./checkmarx-iast-agent install
+      - name: Set up AppScan
+        uses: HCLAppScan/appscan-github-action@v2
+        with:
+          appscan-version: 12.9.1
+          license-key: ${{ secrets.APPSCAN_LICENSE_KEY }}
+          appscan-server-url: https://your-appscan-server-url
+          appscan-service: default
 
-      - name: Configure Checkmarx IAST
+      - name: Scan application
         run: |
-          cat << EOF > /opt/checkmarx/iast/agent.conf
-          {
-            "server": {
-              "url": "https://your-checkmarx-iast-server-url",
-              "token": "${{ secrets.CHECKMARX_IAST_API_TOKEN }}"
-            }
-          }
-          EOF
+          appscan scan -t scan -a your-application.zip
 
-      - name: Start Checkmarx IAST Agent
-        run: |
-          sudo ./checkmarx-iast-agent start
-
-      - name: Run Checkmarx IAST Scan
-        run: |
-          sudo ./checkmarx-iast-agent scan
-
-      - name: Upload Scan Results
+      - name: Upload scan results
         uses: actions/upload-artifact@v2
         with:
-          name: checkmarx-iast-scan-results
-          path: /opt/checkmarx/iast/results/latest
+          name: appscan-scan-results
+          path: /path/to/scan-results.zip # Adjust the path based on your AppScan scan output
